@@ -12,8 +12,9 @@ Build instruction assume you're in the ports/windows directory.
 Building on Debian/Ubuntu Linux system
 ---------------------------------------
 
-    sudo apt-get install python3 build-essential gcc-mingw-w64
+    sudo apt-get install python3 build-essential gcc-mingw-w64 git
     make -C ../../mpy-cross
+    make submodules
     make CROSS_COMPILE=i686-w64-mingw32-
 
 
@@ -26,15 +27,18 @@ Install Cygwin, then install following packages using Cygwin's setup.exe:
 * mingw64-x86_64-gcc-core
 * make
 * python3
+* git
 
 Build using:
 
     make -C ../../mpy-cross CROSS_COMPILE=i686-w64-mingw32-
+    make submodules
     make CROSS_COMPILE=i686-w64-mingw32-
 
 Or for 64bit:
 
     make -C ../../mpy-cross CROSS_COMPILE=x86_64-w64-mingw32-
+    make submodules
     make CROSS_COMPILE=x86_64-w64-mingw32-
 
 
@@ -45,11 +49,12 @@ Install MSYS2 from http://repo.msys2.org/distrib, start the msys2.exe shell and
 install the build tools:
 
     pacman -Syuu
-    pacman -S make mingw-w64-x86_64-gcc pkg-config python3
+    pacman -S make mingw-w64-x86_64-gcc pkg-config python3 git
 
 Start the mingw64.exe shell and build:
 
     make -C ../../mpy-cross STRIP=echo SIZE=echo
+    make submodules
     make
 
 
