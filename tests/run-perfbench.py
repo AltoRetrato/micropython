@@ -146,7 +146,7 @@ def run_benchmarks(args, target, param_n, param_m, n_average, test_list):
                 error = "FAIL self"
                 break
             times.append(time)
-            scores.append(1e6 * norm / time)
+            scores.append(0 if time == 0 else 1e6 * norm / time)
 
         # Check result against truth if needed
         if error is None and result_out != "None":
@@ -170,7 +170,10 @@ def run_benchmarks(args, target, param_n, param_m, n_average, test_list):
             s_avg, s_sd = compute_stats(scores)
             print(
                 "{:.2f} {:.4f} {:.2f} {:.4f}".format(
-                    t_avg, 100 * t_sd / t_avg, s_avg, 100 * s_sd / s_avg
+                    t_avg, 
+                    0 if t_avg == 0 else 100 * t_sd / t_avg, 
+                    s_avg,
+                    0 if s_avg == 0 else 100 * s_sd / s_avg
                 )
             )
             if 0:
